@@ -15,11 +15,11 @@ class Vigenere():
         for _ in text:
             new_key += key[i]
             i = i + 1 if i < len(key)-1 else 0
-        return new_key
+        return new_key.upper()
 
     def crypt_decrypt(self, key, text, option):
         if len(text) <= 0 or len(key) < 2:
-            raise ValueError('Error')
+            raise ValueError('Tamanho do texto ou da chave invalida')
         text = text.upper()
         new_key = self.key_pattern(key, text)
         text_ans = ""
@@ -28,10 +28,10 @@ class Vigenere():
             if letter not in self.alphabet:
                 text_ans += letter
             elif option == 'C': 
-                text_ans += self.alphabet[(ord(letter) - 65 + ord(new_key[i]) - 65) % 26]
+                text_ans += self.alphabet[((ord(letter) + ord(new_key[i])) % 26)]
                 i += 1
             else:
-                text_ans += self.alphabet[(ord(letter) - 65 - ord(new_key[i]) - 65) % 26]
+                text_ans += self.alphabet[(ord(letter) - ord(new_key[i]) + 26) % 26]
                 i += 1
         return text_ans
 
@@ -75,7 +75,7 @@ class Vigenere():
 
         print("Tamanho provavel da chave: ", key_size[0]) 
         ans = input("Voce deseja continuar com esse tamanho da chave? (S/N)\n>>> ")  
-        if ans == 'N':
+        if ans.lower() == 'n':
             aux = int(input("Digite o tamanho da chave desejado (entre 2 e 20).\n>>> "))
             while aux > 20 or aux < 2:
                 aux = int(input("Tamanho Invalido. Digite um numero entre 2 e 20.\n>>> "))
