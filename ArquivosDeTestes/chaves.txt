@@ -4,5 +4,5 @@
 007_d.txt = GUIDUDA
 008_d.txt = AMBRIOSETHOMAS
 009_d.txt = LEMON
-desafio.txt = ARARA
+desafio1.txt = ARARA
 desafio2.txt = TEMPORAL
