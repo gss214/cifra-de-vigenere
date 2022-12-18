@@ -1,11 +1,8 @@
 # Projeto 1 de Segurança Computacional 2022.2
 
-Projeto 1 da disciplina de Segurança Computacional da UnB em 2022.2.
-
-Universidade de Brasília, Instituto de Ciências Exatas, Departamento de Ciência da Computação.
-
-Desenvolvido por: [Guilherme Silva Souza](https://github.com/gss214) e [Maria Eduarda Machado de Holanda](https://github.com/dudaholandah).
-
+Projeto 1 da disciplina de Segurança Computacional da UnB em 2022.2. \
+Universidade de Brasília, Instituto de Ciências Exatas, Departamento de Ciência da Computação. \
+Desenvolvido por: [Guilherme Silva Souza](https://github.com/gss214) e [Maria Eduarda Machado de Holanda](https://github.com/dudaholandah). \
 Linguagem utilizada: Python.
 
 ## Descrição
