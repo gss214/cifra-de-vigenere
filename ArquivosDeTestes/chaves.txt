@@ -1,4 +1,3 @@
-001_d.txt = LIMAO
 004_d.txt = QUEEN
 006_d.txt = TIMMAIA
 007_d.txt = GUIDUDA

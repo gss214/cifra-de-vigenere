@@ -8,42 +8,55 @@ class Vigenere():
         self.pt_probabilities = [14.63, 1.04, 3.88, 4.99, 12.57, 1.02, 1.30, 1.28, 6.18, 0.40, 0.02, 2.78, 4.74, 5.05, 10.73, 2.52, 1.20, 6.53, 7.81, 4.34, 4.63, 1.67, 0.01, 0.21, 0.01, 0.47]
 
     def key_pattern(self, key, text):
+        if not all(c.upper() in self.alphabet for c in key):
+            raise ValueError('Chave inválida')
         if len(key) > len(text):
             return key[:len(text)] 
+
         new_key = ""
         i = 0
+
         for _ in text:
             new_key += key[i]
-            i = i + 1 if i < len(key)-1 else 0
+            i = (i + 1) % len(key)
+
         return new_key.upper()
 
     def crypt_decrypt(self, key, text, option):
-        if len(text) <= 0 or len(key) < 2:
-            raise ValueError('Tamanho do texto ou da chave invalida')
+        if option == 'C' and (len(text) <= 0 or len(key) < 2):
+            raise ValueError('Tamanho do texto ou da chave inválido')
+        elif option == 'D' and (len(text) <= 0 or len(key) < 1):
+            raise ValueError('Tamanho do texto ou da chave inválido')
+
+        if option != 'C' and option != 'D':
+            raise ValueError('Opção inválida!')
+
         text = text.upper()
         new_key = self.key_pattern(key, text)
         text_ans = ""
         i = 0
+
         for letter in text:
-            if letter not in self.alphabet:
-                text_ans += letter
-            elif option == 'C': 
-                text_ans += self.alphabet[((ord(letter) + ord(new_key[i])) % 26)]
+            if letter in self.alphabet:
+                if option == 'C': 
+                    text_ans += self.alphabet[((ord(letter) + ord(new_key[i])) % 26)]
+                else:
+                    text_ans += self.alphabet[(ord(letter) - ord(new_key[i]) % 26 + 26) % 26]
                 i += 1
             else:
-                text_ans += self.alphabet[(ord(letter) - ord(new_key[i]) + 26) % 26]
-                i += 1
+                text_ans += letter
+
         return text_ans
+
 
     def clean_text(self, text):
         text_ans = ""
         for letter in text:
-            if letter in self.alphabet:
+            if letter.upper() in self.alphabet:
                 text_ans += letter
         return text_ans
         
     def key_size(self, text):
-        text = text.upper()
         text = self.clean_text(text)
         spacing = []
     
@@ -84,7 +97,6 @@ class Vigenere():
         return key_size[0]
 
     def discover_letter(self, probability, language):
-
         letter = ''
         tot_diff = 1e9
 

@@ -1,26 +1,15 @@
 from vigenere import Vigenere
 
-def readFile():
+def read_file():
     nome_arquivo = input('Digite o nome do arquivo que esta contida a mensagem (o arquivo tem que esta na pasta ArquivosDeTestes).\n>>> ')
-    lines = []
     try:
         with open(f'ArquivosDeTestes/{nome_arquivo}', encoding="utf-8") as f:
-            lines = f.readlines()
+            return f.read()
     except FileNotFoundError:
         print('ERRO: O arquivo nao existe')
         return None
 
-    output = ""
-    for s in lines:
-        output += s
-
-    return output
-    
-vigenere = Vigenere()
-op = '0' 
-
-while (op != '4'):
-
+def menu():
     print('------------------')
     print('Escolha uma opcao:')
     print('\t1 - Cifrar')
@@ -29,30 +18,34 @@ while (op != '4'):
     print('\t4 - Sair')
     print('------------------')
     op = input(">>> ")
+    return op
+
+vigenere = Vigenere()
+
+while True:
+    op = menu()
 
     if op == '1':
-        mensagem = readFile()
+        mensagem = read_file()
         if mensagem:
             chave = input('Digite a chave para cifrar a mensagem.\n>>> ')
             mensagem_cifrada = vigenere.crypt_decrypt(chave, mensagem, 'C')
             print("Mensagem cifrada:")
             print(mensagem_cifrada)
     elif op == '2':
-        mensagem = readFile()
+        mensagem = read_file()
         if mensagem:
             chave = input('Digite a chave para descifrar a mensagem.\n>>> ')
             mensagem_cifrada = vigenere.crypt_decrypt(chave, mensagem, 'D')
             print("Mensagem descifrada:")
             print(mensagem_cifrada)
-
     elif op == '3':
-        mensagem = readFile()
+        mensagem = read_file()
         if mensagem:
             language = input("A mensagem esta em portugues ou ingles (PT/EN)?\n>>> ")
             end = False
 
             while not end:
-            
                 key_size = vigenere.key_size(mensagem)
                 keyword = vigenere.break_keyword(key_size, mensagem.upper(), language)
 
@@ -62,3 +55,7 @@ while (op != '4'):
 
                 ans = input("Deseja refazer o ataque com outro tamanho de chave (S/N)?\n>>> ")
                 end = (True if ans.upper() == 'N' else False)
+    elif op == '4':
+        break
+    else:
+        print("Opcao inválida")
