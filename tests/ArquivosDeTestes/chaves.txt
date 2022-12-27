@@ -1,0 +1,9 @@
+001_c.txt = GUI
+002_c.txt = TIMMAIA
+003_c.txt = DUDA
+004_c.txt = QUEEN
+005_c.txt = GUIDUDA
+006_c.txt = AMBRIOSETHOMAS
+007_d.txt = LEMON
+desafio1.txt = ARARA
+desafio2.txt = TEMPORAL

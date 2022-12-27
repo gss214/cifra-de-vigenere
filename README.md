@@ -12,3 +12,5 @@ O trabalho consiste em implementar a cifra de Vigenère com os seguintes método
 ## Rodando o projeto
 
 Para rodar o projeto precisa ter o Python instalado na máquina. Utilizamos a versão 3.10.4. Depois é só rodar o comando `python main.py` ou `python3 main.py`
+
+Para rodar os testes, digite o comando `python -m unittest -v`

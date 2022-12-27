@@ -1,12 +1,12 @@
 from vigenere import Vigenere
 
 def read_file():
-    nome_arquivo = input('Digite o nome do arquivo que esta contida a mensagem (o arquivo tem que esta na pasta ArquivosDeTestes).\n>>> ')
+    filename = input('Digite o nome do arquivo que esta contida a mensagem (o arquivo tem que esta na pasta tests/ArquivosDeTestes).\n>>> ')
     try:
-        with open(f'ArquivosDeTestes/{nome_arquivo}', encoding="utf-8") as f:
+        with open(f'tests/ArquivosDeTestes/{filename}', encoding="utf-8") as f:
             return f.read()
     except FileNotFoundError:
-        print('ERRO: O arquivo nao existe')
+        print(f'ERRO: O arquivo {filename} nao existe')
         return None
 
 def menu():
@@ -23,23 +23,23 @@ def menu():
 vigenere = Vigenere()
 
 while True:
-    op = menu()
+    option = menu()
 
-    if op == '1':
-        mensagem = read_file()
-        if mensagem:
-            chave = input('Digite a chave para cifrar a mensagem.\n>>> ')
-            mensagem_cifrada = vigenere.crypt_decrypt(chave, mensagem, 'C')
+    if option == '1':
+        message = read_file()
+        if message:
+            key = input('Digite a chave para cifrar a mensagem.\n>>> ')
+            message_crypt = vigenere.crypt_decrypt(key, message, 'C')
             print("Mensagem cifrada:")
-            print(mensagem_cifrada)
-    elif op == '2':
-        mensagem = read_file()
-        if mensagem:
-            chave = input('Digite a chave para descifrar a mensagem.\n>>> ')
-            mensagem_cifrada = vigenere.crypt_decrypt(chave, mensagem, 'D')
+            print(message_crypt)
+    elif option == '2':
+        message = read_file()
+        if message:
+            key = input('Digite a chave para descifrar a mensagem.\n>>> ')
+            message_decrypt = vigenere.crypt_decrypt(key, message, 'D')
             print("Mensagem descifrada:")
-            print(mensagem_cifrada)
-    elif op == '3':
+            print(message_decrypt)
+    elif option == '3':
         mensagem = read_file()
         if mensagem:
             language = input("A mensagem esta em portugues ou ingles (PT/EN)?\n>>> ")
@@ -55,7 +55,7 @@ while True:
 
                 ans = input("Deseja refazer o ataque com outro tamanho de chave (S/N)?\n>>> ")
                 end = (True if ans.upper() == 'N' else False)
-    elif op == '4':
+    elif option == '4':
         break
     else:
         print("Opcao inválida")
